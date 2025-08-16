@@ -1,12 +1,12 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
-from models import Base
+from sqlalchemy.orm import sessionmaker, Session, declarative_base
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./lisprocoin.db")
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
 
 def get_db():
     db = SessionLocal()
@@ -16,4 +16,6 @@ def get_db():
         db.close()
 
 def init_db():
+    # Posticipa l'import dei modelli per evitare dipendenze circolari
+    from . import models
     Base.metadata.create_all(bind=engine)
