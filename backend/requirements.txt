@@ -1,7 +1,8 @@
-fastapi>=0.101
-uvicorn>=0.19
-python-dotenv>=1.0
-sqlalchemy>=2.0
-requests>=2.31
-passlib[bcrypt]>=1.7
-pyjwt>=2.8
+fastapi==0.109.2
+uvicorn==0.27.1
+python-dotenv==1.0.1
+sqlalchemy==2.0.29
+requests==2.31.0
+passlib[bcrypt]==1.7.4
+pyjwt==2.8.0
+python-multipart==0.0.9
